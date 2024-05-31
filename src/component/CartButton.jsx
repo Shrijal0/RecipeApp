@@ -2,9 +2,12 @@ import { FaCartPlus } from "react-icons/fa";
 import { ShopContext } from "../context/RecipeContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cart/cartSlice";
 
 const CartButton = ({ id }) => {
-  const { addToCart, cartItems } = useContext(ShopContext);
+  const { cartItems } = useContext(ShopContext);
+  const dispatch = useDispatch();
   const cartItemAmount = cartItems[id]; 
 
   const loggedIn = localStorage.getItem("loggedIn")
@@ -20,7 +23,7 @@ const CartButton = ({ id }) => {
         <div className="absolute right-0 top-0 pointer-events-none font-bold text-red-600 text-[20px]">
           {cartItemAmount > 0 && <>{cartItemAmount}</>}
         </div>
-        {loggedIn ? <button onClick={() => addToCart(id)}>
+        {loggedIn ? <button onClick={() => dispatch(addToCart(id))}>
           <FaCartPlus />
         </button> : <button onClick={handlelogin}>
           <FaCartPlus />

@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setFoodItems } from "../redux/cart/cartSlice";
 
 const Search = ({ setFoodData , q , setQ}) => {
+  const dispatch= useDispatch();
   const URL = "https://dummyjson.com/recipes/search?q=";
   // const API_KEY = "d934b0404afe4cdf8a59f3281e4a0f26";
 
@@ -10,6 +13,7 @@ const Search = ({ setFoodData , q , setQ}) => {
         const res = await fetch(`${URL}${q}`);
         const data = await res.json();
         setFoodData(data.recipes);
+        dispatch(setFoodItems(data.recipes));
         // console.log("length:",data.recipes.length)
       } catch (error) {
         console.log("error:", error);
