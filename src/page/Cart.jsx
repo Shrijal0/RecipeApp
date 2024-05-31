@@ -1,21 +1,19 @@
 import React from "react";
 import CartItem from "../component/CartItem";
-import { useContext } from "react";
-import { ShopContext } from "../context/RecipeContext";
+import { useSelector } from "react-redux";
 
-const Cart = ({ foodData , setFoodId}) => {
-  const { cartItems } = useContext(ShopContext);
+const Cart = () => {
+  const { cartItems }= useSelector(state => state.cart);
+  console.log(cartItems);
 
   return (
     <div className="text-black flex flex-col items-center">
       <h1 className="text-red-700 font-bold mb-4 text-center text-4xl">Cart Item:</h1>
       <div className="">
-      {foodData.map((food) => {
-        if (cartItems[food.id] !== 0) {
-          return <CartItem key={food.id} id={food.id} food={food} setFoodId={setFoodId}/>;
-        }
-      })}
       </div>
+      {
+        cartItems?.map((food) => {return <CartItem  key={food.id} food={food}/>})
+      }
     </div>
   );
 };
