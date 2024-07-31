@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { setFoodItems } from "../redux/cart/cartSlice";
 
 const FoodDetails = ({ foodId, setFoodId }) => {
   const dispatch = useDispatch();

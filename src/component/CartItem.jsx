@@ -1,13 +1,11 @@
 import { FaRegPlusSquare, FaRegMinusSquare } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
-import { ShopContext } from "../context/RecipeContext";
-import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   addToCart,
   deleteFromCart,
-  removeFromCart,
-  updateCartItem,
+  subtractFromCart,
+  changingCartQuantity,
 } from "../redux/cart/cartSlice";
 
 const CartItem = ({ food }) => {
@@ -19,7 +17,7 @@ const CartItem = ({ food }) => {
       quantity: e.target.value,
     };
 
-    dispatch(updateCartItem(obj));
+    dispatch(changingCartQuantity(obj));
   };
 
   console.log(food);
@@ -40,10 +38,11 @@ const CartItem = ({ food }) => {
           <MdOutlineCancel />
         </button>
         <div className="absolute bottom-1/4 left-1/2">
-          <button onClick={() => dispatch(removeFromCart(food.id))}>
+          <button onClick={() => dispatch(subtractFromCart(food.id))}>
             <FaRegMinusSquare />
           </button>
           <input
+            type="number"
             value={food.quantity}
             onChange={handleChange}
             className="w-[200px] p-2 text-xl bg-white text-black outline-none border-b-2 border-b-red-300 text-center"

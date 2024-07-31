@@ -22,7 +22,7 @@ const Home = ({
           setFoodId={setFoodId}
           more={more}
           setMore={setMore}
-          foodId={foodId} sw
+          foodId={foodId} 
         />
     <div className=" flex flex-col w-full items-center pb-2">
         {more === 30 ? (

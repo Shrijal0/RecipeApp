@@ -23,7 +23,7 @@ const FoodItem = ({ food, setFoodId }) => {
             )}
           </div>
           {onHover && <Button food={food} setFoodId={setFoodId} />}
-          {onHover && <CartButton id={food.id} />}
+          {onHover && <CartButton id={food.id} food={food}/>}
         </div>
         <div className="h-[60px]">
           <h1 className="text-gray-700 text-xl font-bold text-center font-sans">
